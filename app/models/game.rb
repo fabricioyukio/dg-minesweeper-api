@@ -1,4 +1,6 @@
 class Game < ApplicationRecord
+  has_many :logs
+
   validates_presence_of :name, :status, :columns, :lines
   validates :name, uniqueness: true
   validate :validate_status
