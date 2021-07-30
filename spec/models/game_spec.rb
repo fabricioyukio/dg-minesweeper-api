@@ -3,11 +3,14 @@ require 'spec_helper'
 
 RSpec.describe Game, :type => :model do
   it "is not valid without valid attributes" do
-    a_game = Game.new(name: nil, status: 'FAKE_STATUS')
+    a_game = Game.new(name: nil, status: 'FAKE_STATUS', lines:1, columns: 50)
     expect(a_game).to_not be_valid
     a_game.name = 'NiceName'
     expect(a_game).to_not be_valid
     a_game.status = 'CREATED'
+    expect(a_game).to_not be_valid
+    a_game.lines = 4
+    a_game.columns = 40
     expect(a_game).to be_valid
   end
 
