@@ -20,8 +20,7 @@ ActiveRecord::Schema.define(version: 2021_07_30_120351) do
     t.string "status", default: "CREATED", null: false
     t.integer "columns", default: 20, null: false
     t.integer "lines", default: 16, null: false
-    t.integer "mines_total", default: 99, null: false
-    t.string "outcome"
+    t.integer "mines_total", default: 64, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_games_on_name", unique: true
