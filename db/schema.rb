@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_30_120351) do
+ActiveRecord::Schema.define(version: 2021_08_08_201046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,11 +18,12 @@ ActiveRecord::Schema.define(version: 2021_07_30_120351) do
   create_table "games", force: :cascade do |t|
     t.string "name"
     t.string "status", default: "CREATED", null: false
-    t.integer "columns", default: 20, null: false
-    t.integer "lines", default: 16, null: false
-    t.integer "mines_total", default: 64, null: false
+    t.integer "columns", default: 4, null: false
+    t.integer "lines", default: 4, null: false
+    t.integer "mines_total", default: 3, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "grid", default: {}, null: false
     t.index ["name"], name: "index_games_on_name", unique: true
   end
 
