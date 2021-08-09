@@ -11,8 +11,9 @@ I've saved the "original" README.md file, which contains the requirements for th
 [`README.original.md`](README.original.md)
 
 ## Dependencies
-Ruby 3+
-PostgreSQL 12+
+
+* Ruby 3+
+* PostgreSQL 12+
 
 ### Frontend Project
 
