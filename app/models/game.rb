@@ -1,5 +1,9 @@
 class Game < ApplicationRecord
+  belongs_to :player
+
   has_many :logs
+  has_many :sessions
+  has_many :players, :through => :sessions
 
   validates_presence_of :name, :status, :columns, :lines
   validates :name, uniqueness: true
@@ -20,8 +24,8 @@ class Game < ApplicationRecord
 
   attr_accessor :grid
 
-  def after_initialize
-  end
+  # CALLBACKS
+  after_create :add_player
 
   # Deploys mines in the GRID
   def deploy(initial_cell=0)
@@ -90,5 +94,14 @@ class Game < ApplicationRecord
   # Default mines to be set for a balanced game
   def def_mines_to_deploy
     (self.lines * self.columns * 0.2).floor
+  end
+
+  def add_player (player = self.player)
+    unless players.include?(player)
+      sessions << Session.create(
+        game_id: self.id,
+        player_id: player.id
+      )
+    end
   end
 end
