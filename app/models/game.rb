@@ -25,7 +25,7 @@ class Game < ApplicationRecord
   attr_accessor :grid
 
   # CALLBACKS
-  after_create :create_game_session
+  after_create :add_player
 
   # Deploys mines in the GRID
   def deploy(initial_cell=0)
@@ -96,7 +96,12 @@ class Game < ApplicationRecord
     (self.lines * self.columns * 0.2).floor
   end
 
-  private
-    def create_game_session
+  def add_player (player = self.player)
+    unless players.include?(player)
+      sessions << Session.create(
+        game_id: self.id,
+        player_id: player.id
+      )
     end
+  end
 end
